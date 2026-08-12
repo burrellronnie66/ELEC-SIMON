@@ -27,6 +27,19 @@ Real client logos go in `assets/logos/`. Use white or light SVGs (they sit on a
 wine bar), then replace each `<span class="logo-badge">` in the "Trusted by"
 strip with `<img src="assets/logos/zillow.svg" alt="Zillow" height="28">`.
 
+## Why swaps show up right away
+
+`vercel.json` deliberately serves `/assets/*` with
+`Cache-Control: public, max-age=0, must-revalidate` rather than the usual
+long-lived `immutable` caching. Because photos here are replaced **in place**
+at the same filename, `immutable` would tell browsers to keep showing the old
+image for up to a year. With `must-revalidate` the browser sends a conditional
+request and Vercel answers `304 Not Modified` from its ETag, so repeat visits
+stay fast but a swapped photo appears immediately.
+
+If you ever do add content-hashed filenames (`hero.a1b2c3.jpg`), long
+`immutable` caching becomes safe again.
+
 ## Before uploading replacements
 
 Compress everything — [Squoosh](https://squoosh.app) at ~80% quality is plenty.
