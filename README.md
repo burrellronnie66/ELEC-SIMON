@@ -60,8 +60,7 @@ Budget Range, Message, Service Interest.
 All six image slots ship with real photos (see
 [`assets/README.md`](assets/README.md) for what's where). To swap any of them,
 replace the file at the same path using the same aspect ratio — no code
-changes. One is worth upgrading when you have the shot: the school assembly
-card currently uses a Cavaliers drumming photo as a stand-in.
+changes.
 
 ---
 
