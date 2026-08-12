@@ -1,24 +1,37 @@
 /* ==========================================================================
    Elec Simon — booking site
-   Single stylesheet. Dark stage palette + amber accent.
+   Single stylesheet. Cleveland Cavaliers palette: wine, gold, white.
    ========================================================================== */
 
 /* -------------------------------- Tokens -------------------------------- */
+/* Cleveland Cavaliers palette: wine red, gold, white on a near-black base.
+   Wine is a background/structural color only — it lacks contrast for text on
+   dark, so type is always gold or white. */
 :root {
-  --ink:        #0a0a0c;
-  --ink-2:      #111114;
-  --ink-3:      #17171b;
-  --ink-4:      #1e1e24;
+  --ink:        #0a0709;  /* near-black, faint wine tint */
+  --ink-2:      #130c10;
+  --ink-3:      #1b1116;
+  --ink-4:      #23161c;
 
-  --fg:         #f6f5f3;
-  --muted:      #a5a3a0;
-  --line:       rgba(255, 255, 255, 0.10);
-  --line-2:     rgba(255, 255, 255, 0.18);
+  --fg:         #ffffff;
+  --muted:      #b3a7ac;
+  --line:       rgba(255, 255, 255, 0.11);
+  --line-2:     rgba(255, 255, 255, 0.20);
 
-  --amber:      #ffb01f;
-  --amber-2:    #ff8a00;
-  --amber-soft: rgba(255, 176, 31, 0.12);
-  --ember:      #e0341c;
+  --wine:       #860038;  /* Cavs wine */
+  --wine-2:     #5c0026;  /* deeper wine for gradients */
+  --wine-lift:  #a8104b;  /* hover / lifted wine */
+  --red:        #e4002b;  /* bright red for accents on dark */
+
+  --gold:       #fdbb30;  /* Cavs gold */
+  --gold-2:     #e5a100;
+  --gold-soft:  rgba(253, 187, 48, 0.12);
+
+  /* Legacy aliases so accent usages stay readable throughout the sheet. */
+  --amber:      var(--gold);
+  --amber-2:    var(--gold-2);
+  --amber-soft: var(--gold-soft);
+  --ember:      var(--red);
 
   --radius:     14px;
   --radius-lg:  20px;
@@ -141,10 +154,10 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
 .btn--primary {
   background: linear-gradient(180deg, var(--amber), var(--amber-2));
-  color: #14100a;
-  box-shadow: 0 10px 30px -10px rgba(255, 150, 20, 0.65);
+  color: #1a0a10;
+  box-shadow: 0 10px 30px -10px rgba(253, 187, 48, 0.55);
 }
-.btn--primary:hover { transform: translateY(-2px); box-shadow: 0 18px 40px -12px rgba(255, 150, 20, 0.8); }
+.btn--primary:hover { transform: translateY(-2px); box-shadow: 0 18px 40px -12px rgba(253, 187, 48, 0.72); }
 .btn--primary:active { transform: translateY(0); }
 
 .btn--sm { padding: 10px 18px; font-size: 0.88rem; }
@@ -161,7 +174,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(10, 10, 12, 0.72);
+  background: rgba(10, 7, 9, 0.72);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid transparent;
@@ -169,7 +182,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 .site-header.is-stuck {
   border-bottom-color: var(--line);
-  background: rgba(10, 10, 12, 0.92);
+  background: rgba(10, 7, 9, 0.94);
 }
 
 .site-header__inner {
@@ -264,73 +277,66 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .ph--sm .ph__spec { font-size: 0.7rem; }
 
 /* -------------------------------- Hero ---------------------------------- */
+/* Split layout: copy left, photo right. Keeps the headline fully legible and
+   the photograph uncropped by text — the action shots are the selling point,
+   so nothing is printed on top of them. */
 .hero {
   position: relative;
-  display: flex;
-  align-items: center;
-  min-height: min(92vh, 860px);
-  padding-block: clamp(80px, 14vw, 150px);
+  padding-block: clamp(48px, 7vw, 96px) clamp(64px, 8vw, 110px);
   isolation: isolate;
+  overflow: hidden;
   border-bottom: 1px solid var(--line);
 }
 
-.hero__media {
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  background: var(--ink);
-}
-
-.hero__scrim {
+.hero__glow {
   position: absolute;
   inset: 0;
   z-index: -1;
   background:
-    linear-gradient(90deg, rgba(10, 10, 12, 0.94) 0%, rgba(10, 10, 12, 0.82) 45%, rgba(10, 10, 12, 0.55) 100%),
-    linear-gradient(0deg, var(--ink) 2%, rgba(10, 10, 12, 0.25) 55%),
-    radial-gradient(80% 60% at 15% 40%, rgba(255, 138, 0, 0.16), transparent 70%);
+    radial-gradient(58% 62% at 78% 32%, rgba(134, 0, 56, 0.55), transparent 68%),
+    radial-gradient(45% 50% at 12% 78%, rgba(134, 0, 56, 0.22), transparent 70%);
 }
 
-.hero__inner { position: relative; }
-
-/* Corner badge naming the hero image spec. Lives above the scrim (unlike the
-   .ph layer, which is buried behind it) and vanishes once the file exists. */
-.hero__ph-note {
-  display: none;
-  position: absolute;
-  right: var(--gutter);
-  bottom: 18px;
-  margin: 0;
-  padding: 8px 14px;
-  border: 1px dashed var(--line-2);
-  border-radius: 999px;
-  background: rgba(10, 10, 12, 0.75);
-  color: var(--muted);
-  font-size: 0.72rem;
-  letter-spacing: 0.02em;
+.hero__inner {
+  position: relative;
+  display: grid;
+  gap: clamp(34px, 5vw, 60px);
+  align-items: center;
 }
-.hero__ph-note strong {
-  color: var(--amber);
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  margin-right: 8px;
+@media (min-width: 900px) {
+  .hero__inner { grid-template-columns: 1.06fr 0.94fr; }
 }
-.hero.is-awaiting-image .hero__ph-note { display: block; }
-@media (max-width: 620px) {
-  .hero__ph-note { left: var(--gutter); right: var(--gutter); text-align: center; }
-}
-
-/* Hero placeholder keeps its diagonal texture but drops the centered text. */
-.ph--quiet .ph__label,
-.ph--quiet .ph__spec { display: none; }
 
 .hero__title {
-  max-width: 16ch;
-  font-size: clamp(2.6rem, 8.4vw, 5.4rem);
+  max-width: 15ch;
+  font-size: clamp(2.5rem, 6.4vw, 4.4rem);
   font-weight: 900;
   text-transform: uppercase;
   text-wrap: balance;
+}
+
+/* Photo frame: gold hairline over a wine glow. */
+.hero__figure { margin: 0; position: relative; }
+.hero__figure::before {
+  content: "";
+  position: absolute;
+  inset: -14% -8% -10%;
+  z-index: -1;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(134, 0, 56, 0.7), transparent 75%);
+  filter: blur(10px);
+}
+.hero__media {
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(253, 187, 48, 0.34);
+  box-shadow: 0 30px 70px -24px rgba(0, 0, 0, 0.9);
+}
+@media (min-width: 900px) {
+  .hero__figure { max-width: 480px; margin-inline-start: auto; }
+}
+@media (max-width: 899px) {
+  .hero__figure { max-width: 420px; margin-inline: auto; width: 100%; }
 }
 .hero__title-accent {
   display: block;
@@ -354,7 +360,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
 /* ------------------------------ Logo strip ------------------------------ */
 .logos {
-  background: var(--ink-2);
+  background: linear-gradient(180deg, rgba(134, 0, 56, 0.30), var(--ink-2) 85%);
+  border-top: 2px solid var(--gold);
   border-bottom: 1px solid var(--line);
   padding-block: 34px;
 }
@@ -409,7 +416,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 .card:hover {
   transform: translateY(-4px);
-  border-color: rgba(255, 176, 31, 0.42);
+  border-color: rgba(253, 187, 48, 0.45);
   box-shadow: var(--shadow);
 }
 @media (prefers-reduced-motion: reduce) { .card:hover { transform: none; } }
@@ -525,7 +532,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   translate: -50% -50%;
   border-style: solid;
   border-width: 15px 0 15px 25px;
-  border-color: transparent transparent transparent #14100a;
+  border-color: transparent transparent transparent #1a0a10;
 }
 .video__facade:hover .video__play { transform: scale(1.08); }
 @media (prefers-reduced-motion: reduce) {
@@ -602,7 +609,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .booking {
   position: relative;
   background:
-    radial-gradient(70% 55% at 50% 0%, rgba(255, 138, 0, 0.13), transparent 70%),
+    radial-gradient(70% 55% at 50% 0%, rgba(134, 0, 56, 0.5), transparent 72%),
     var(--ink);
   border-top: 1px solid var(--line);
 }
@@ -656,7 +663,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .field textarea:focus {
   outline: none;
   border-color: var(--amber);
-  box-shadow: 0 0 0 3px rgba(255, 176, 31, 0.18);
+  box-shadow: 0 0 0 3px rgba(253, 187, 48, 0.20);
 }
 
 .field select {
@@ -683,13 +690,13 @@ button, input, select, textarea { font: inherit; color: inherit; }
   display: none;
   margin: 0;
   font-size: 0.84rem;
-  color: #ff8a7a;
+  color: #ff9a8c;
 }
 .field__hint { margin: 0; font-size: 0.8rem; color: #7c7a77; }
 
 .field.has-error input,
 .field.has-error select,
-.field.has-error textarea { border-color: #ff6a55; }
+.field.has-error textarea { border-color: #e4002b; }
 .field.has-error .field__error { display: block; }
 .field.has-error .field__hint { display: none; }
 
@@ -737,7 +744,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   place-items: center;
   border-radius: 50%;
   background: linear-gradient(180deg, var(--amber), var(--amber-2));
-  color: #14100a;
+  color: #1a0a10;
   font-size: 1.9rem;
   font-weight: 700;
 }
@@ -745,18 +752,18 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .form-status--error {
   margin: 18px 0 0;
   padding: 14px 16px;
-  border: 1px solid rgba(255, 106, 85, 0.5);
+  border: 1px solid rgba(228, 0, 43, 0.55);
   border-radius: var(--radius);
-  background: rgba(224, 52, 28, 0.12);
-  color: #ffb3a8;
+  background: rgba(228, 0, 43, 0.14);
+  color: #ffc0b6;
   font-size: 0.92rem;
 }
 .form-status--error a { color: var(--amber); }
 
 /* -------------------------------- Footer -------------------------------- */
 .site-footer {
-  background: var(--ink-2);
-  border-top: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(134, 0, 56, 0.22), var(--ink-2) 60%);
+  border-top: 2px solid var(--gold);
   padding-top: clamp(48px, 7vw, 76px);
 }
 
@@ -799,7 +806,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .socials a:hover {
   background: var(--amber);
   border-color: var(--amber);
-  color: #14100a;
+  color: #1a0a10;
   transform: translateY(-2px);
 }
 @media (prefers-reduced-motion: reduce) { .socials a:hover { transform: none; } }

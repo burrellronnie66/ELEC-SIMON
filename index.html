@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Elec Simon — Event MC &amp; Percussion Entertainer | Orlando, FL</title>
 <meta name="description" content="Elec Simon is a touring Event MC and percussion entertainer based in Orlando, FL. Corporate conferences, weddings, festivals and school assemblies. Trusted by Zillow, Lowe's, Synchrony Bank and Summit of Greatness. Check availability.">
-<meta name="theme-color" content="#0a0a0c">
+<meta name="theme-color" content="#0a0709">
 <link rel="canonical" href="https://elecsimon.com/">
 
 <!-- Open Graph / social -->
@@ -13,7 +13,6 @@
 <meta property="og:title" content="Elec Simon — Event MC &amp; Percussion Entertainer">
 <meta property="og:description" content="No dead spots, just energy. Orlando-based, world-traveled MC and percussionist. Check availability.">
 <meta property="og:url" content="https://elecsimon.com/">
-<!-- TODO: drop a 1200x630 image at assets/og-image.jpg -->
 <meta property="og:image" content="https://elecsimon.com/assets/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
 
@@ -51,44 +50,44 @@
 
 <!-- ============================= HERO ============================= -->
 <section class="hero">
-  <!-- IMAGE PLACEHOLDER — hero. Drop a file at assets/hero.jpg (2400×1350, 16:9,
-       action shot, subject right-of-center so the headline stays readable).
-       To use a video loop instead, see the commented block below. -->
-  <div class="hero__media media" aria-hidden="true">
-    <img src="assets/hero.jpg" alt=""
-         onerror="this.closest('.media').classList.add('is-missing');
-                  this.closest('.hero').classList.add('is-awaiting-image')">
-    <!-- Texture only — the readable spec label sits in the corner badge below,
-         because this layer is behind the hero's darkening scrim. -->
-    <div class="ph ph--quiet"></div>
-    <!--
-    VIDEO LOOP OPTION — replace the <img> above with this:
-    <video autoplay muted loop playsinline poster="assets/hero.jpg">
-      <source src="assets/hero-loop.mp4" type="video/mp4">
-    </video>
-    -->
-  </div>
-  <div class="hero__scrim" aria-hidden="true"></div>
+  <div class="hero__glow" aria-hidden="true"></div>
 
   <div class="container hero__inner">
-    <p class="eyebrow reveal">Orlando, FL &middot; Available worldwide</p>
-    <h1 class="hero__title reveal">
-      Event MC &amp; Percussion Entertainer
-      <span class="hero__title-accent">No Dead Spots, Just Energy</span>
-    </h1>
-    <p class="hero__sub reveal">
-      Orlando-based. World-traveled. Trusted by Zillow, Lowe&rsquo;s, Synchrony Bank,
-      and Summit of Greatness.
-    </p>
-    <div class="hero__actions reveal">
-      <a class="btn btn--primary btn--lg" href="#booking" data-scroll>Check Availability</a>
+    <div class="hero__copy">
+      <p class="eyebrow reveal">Orlando, FL &middot; Available worldwide</p>
+      <h1 class="hero__title reveal">
+        Event MC &amp; Percussion Entertainer
+        <span class="hero__title-accent">No Dead Spots, Just Energy</span>
+      </h1>
+      <p class="hero__sub reveal">
+        Orlando-based. World-traveled. Trusted by Zillow, Lowe&rsquo;s, Synchrony Bank,
+        and Summit of Greatness.
+      </p>
+      <div class="hero__actions reveal">
+        <a class="btn btn--primary btn--lg" href="#booking" data-scroll>Check Availability</a>
+      </div>
     </div>
-  </div>
 
-  <!-- Shown only while assets/hero.jpg is missing; disappears once you add it. -->
-  <p class="hero__ph-note">
-    <strong>Hero image</strong> assets/hero.jpg &middot; 2400 × 1350 (16:9)
-  </p>
+    <!-- Hero photo: assets/hero.jpg (900×1125, 4:5). Swap the file to change it.
+         For a video loop, replace the <img> with the commented block below. -->
+    <figure class="hero__figure reveal">
+      <div class="hero__media media">
+        <img src="assets/hero.jpg" width="900" height="1125" fetchpriority="high"
+             alt="Elec Simon hosting an event outdoors, microphone in hand"
+             onerror="this.closest('.media').classList.add('is-missing')">
+        <div class="ph">
+          <span class="ph__label">Hero image</span>
+          <span class="ph__spec">assets/hero.jpg &middot; 900 × 1125 (4:5)</span>
+        </div>
+        <!--
+        VIDEO LOOP OPTION — replace the <img> above with this:
+        <video autoplay muted loop playsinline poster="assets/hero.jpg">
+          <source src="assets/hero-loop.mp4" type="video/mp4">
+        </video>
+        -->
+      </div>
+    </figure>
+  </div>
 </section>
 
 <!-- ========================== LOGO STRIP ========================== -->
@@ -118,7 +117,8 @@
       <article class="card reveal">
         <!-- IMAGE PLACEHOLDER — card 1. assets/card-corporate.jpg (1200×900, 4:3) -->
         <div class="card__media media">
-          <img src="assets/card-corporate.jpg" alt=""
+          <img src="assets/card-corporate.jpg" width="1200" height="900" loading="lazy"
+               alt="Elec Simon, smiling studio portrait"
                onerror="this.closest('.media').classList.add('is-missing')">
           <div class="ph ph--sm">
             <span class="ph__label">Card image</span>
@@ -141,7 +141,8 @@
       <article class="card reveal">
         <!-- IMAGE PLACEHOLDER — card 2. assets/card-percussion.jpg (1200×900, 4:3) -->
         <div class="card__media media">
-          <img src="assets/card-percussion.jpg" alt=""
+          <img src="assets/card-percussion.jpg" width="1200" height="900" loading="lazy"
+               alt="Live percussion set on congas under stage lighting"
                onerror="this.closest('.media').classList.add('is-missing')">
           <div class="ph ph--sm">
             <span class="ph__label">Card image</span>
@@ -164,7 +165,8 @@
       <article class="card reveal">
         <!-- IMAGE PLACEHOLDER — card 3. assets/card-schools.jpg (1200×900, 4:3) -->
         <div class="card__media media">
-          <img src="assets/card-schools.jpg" alt=""
+          <img src="assets/card-schools.jpg" width="1200" height="900" loading="lazy"
+               alt="Drummer mid-performance, sticks up and grinning"
                onerror="this.closest('.media').classList.add('is-missing')">
           <div class="ph ph--sm">
             <span class="ph__label">Card image</span>
@@ -225,11 +227,12 @@
 
     <!-- IMAGE PLACEHOLDER — story portrait. assets/about.jpg (1200×1500, 4:5) -->
     <div class="about__media media reveal">
-      <img src="assets/about.jpg" alt="Elec Simon performing"
+      <img src="assets/about.jpg" width="1160" height="1450" loading="lazy"
+           alt="Bucket-drumming performance on court at a Cleveland Cavaliers game"
            onerror="this.closest('.media').classList.add('is-missing')">
       <div class="ph">
         <span class="ph__label">Story photo</span>
-        <span class="ph__spec">assets/about.jpg &middot; 1200 × 1500 (4:5)</span>
+        <span class="ph__spec">assets/about.jpg &middot; 1160 × 1450 (4:5)</span>
       </div>
     </div>
 

@@ -9,7 +9,7 @@ Three files do the whole job.
 
 ```
 index.html      markup + content
-styles.css      all styling (dark stage palette, amber accent)
+styles.css      all styling (Cavaliers wine / gold / white on near-black)
 script.js       reveals, form handling, video facade — ~200 lines, no libs
 vercel.json     static hosting config + cache/security headers
 assets/         image drop-in folder (see assets/README.md)
@@ -29,7 +29,7 @@ python3 -m http.server 3000
 
 ---
 
-## Two things to wire up before launch
+## One thing to wire up before launch
 
 ### 1. Formspree endpoint  ⚠️ required
 
@@ -55,11 +55,13 @@ form already includes a `_gotcha` honeypot for spam and a hidden
 **Submitted fields:** Name, Email, Phone, Event Type, Event Date, Location,
 Budget Range, Message, Service Interest.
 
-### 2. Photos
+### 2. Photos — already in place
 
-Drop images into `assets/` using the filenames in
-[`assets/README.md`](assets/README.md) — placeholders vanish on their own once
-the files exist. Nothing to change in the code.
+All six image slots ship with real photos (see
+[`assets/README.md`](assets/README.md) for what's where). To swap any of them,
+replace the file at the same path using the same aspect ratio — no code
+changes. One is worth upgrading when you have the shot: the school assembly
+card currently uses a Cavaliers drumming photo as a stand-in.
 
 ---
 
@@ -97,12 +99,13 @@ ever differs from `elecsimon.com`: the `canonical` link, the `og:url` and
 | What | Where |
 |---|---|
 | Headline / subhead | `index.html`, `.hero` section |
+| Hero photo | replace `assets/hero.jpg` (4:5). The hero is a split layout — copy left, photo right — so the headline never sits on top of the photo |
 | "Trusted by" names | `index.html`, `.logos__list` — swap `<span>` for `<img>` when real logos arrive |
 | Service card copy | `index.html`, `.cards` |
 | YouTube video | `index.html`, `data-video-id` on `.video__facade` (also update the two thumbnail URLs in the same block) — see "Swapping the video" below |
 | Short bio / full story | `index.html`, `#about` — long version lives in `#full-story` |
 | Phone / email / socials | `index.html`, `.site-footer` |
-| Accent color | `styles.css`, `--amber` / `--amber-2` / `--ember` in `:root` |
+| Colors | `styles.css`, `--wine` / `--gold` / `--red` in `:root` |
 
 Every dropdown option, budget band and event type is plain HTML in the form —
 edit the `<option>` tags directly.
@@ -125,6 +128,10 @@ The "See Elec Live" section currently plays the vertical Short
 
 ## Notes on how it's built
 
+- **Palette.** Cleveland Cavaliers colors — wine `#860038`, gold `#FDBB30`,
+  white — on a near-black base. Wine is used structurally (section bands,
+  glows, the "Trusted by" bar) and never for text, where it lacks contrast on
+  dark; type is always gold or white.
 - **Performance.** Zero JS dependencies. The YouTube player is a click-to-load
   facade (thumbnail only until pressed), so the page never ships an embed's
   worth of scripts on load. Fonts load from Google Fonts with `display=swap` and
