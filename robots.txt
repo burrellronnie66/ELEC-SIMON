@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://elecsimon.com/sitemap.xml
