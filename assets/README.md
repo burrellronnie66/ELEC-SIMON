@@ -10,7 +10,7 @@ showing the expected filename and size, so nothing silently breaks.
 | `hero.jpg` | 900 × 1125 | 4:5 | Elec on mic, outdoor stage | Hero photo panel (right side on desktop) |
 | `card-corporate.jpg` | 1200 × 900 | 4:3 | Studio portrait, smiling | Service card 1 — Corporate & Conference MC |
 | `card-percussion.jpg` | 1200 × 900 | 4:3 | Congas under stage lighting | Service card 2 — Live Percussion + DJ |
-| `card-schools.jpg` | 1200 × 900 | 4:3 | Elec with a packed school gym of students | Service card 3 — School Anti-Bullying Assembly |
+| `card-schools-assembly.jpg` | 1200 × 900 | 4:3 | Elec with a packed school gym of students | Service card 3 — School Anti-Bullying Assembly |
 | `about.jpg` | 1160 × 1450 | 4:5 | Bucket drumming on the Cavaliers court | Story section |
 | `og-image.jpg` | 1200 × 630 | 1.91:1 | Elec on mic (wide crop) | Social share preview (texts, Slack, LinkedIn) |
 
@@ -26,6 +26,13 @@ the video loads and on devices that skip autoplay.
 Real client logos go in `assets/logos/`. Use white or light SVGs (they sit on a
 wine bar), then replace each `<span class="logo-badge">` in the "Trusted by"
 strip with `<img src="assets/logos/zillow.svg" alt="Zillow" height="28">`.
+
+## Note on `card-schools-assembly.jpg`
+
+It was originally `card-schools.jpg`. It got renamed because the first deploy
+served assets as `immutable`, which pinned the old image in already-visited
+browsers; a new filename is a new cache key, so it fetches fresh. The header is
+fixed now (below), so future swaps don't need renaming.
 
 ## Why swaps show up right away
 
